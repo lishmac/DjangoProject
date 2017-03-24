@@ -125,3 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+import json
+email_config=dict()
+with open(os.path.join(BASE_DIR, 'weather', 'email_config.json')) as json_file:
+   email_config = json.load(json_file)
+EMAIL_USE_TLS = email_config['EMAIL_USE_TLS']
+EMAIL_HOST = str(email_config['EMAIL_HOST'])
+EMAIL_PORT = email_config['EMAIL_PORT']
+EMAIL_HOST_USER = str(email_config['EMAIL_HOST_USER'])
+EMAIL_HOST_PASSWORD = str(email_config['EMAIL_HOST_PASSWORD'])
+DEFAULT_FROM_EMAIL = str(email_config['DEFAULT_FROM_EMAIL'])
